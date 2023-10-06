@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cstyle.css">
+    <title>Confirmtion Page</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="result"></div>
+        <form action="">
+            <p class="ptxt"> Dear <span id="name"></span>,</p>
+            <p class="ptxt">Thank you for your inquiry.</p>
+            <p class="ptxt">A 4 digit verification number has been sent to your email <span id="eemail"></span></p>
+            <valid email from previous page>
+                <p class="ptxt">Please enter it in the following box and submit for confirmation</p>
+
+                <div class="text-box">
+                    <button onclick="getotp()" class="btn">Get OTP</button>
+                    <input type="text" id="box" maxlength="4" minlength="4">
+                    <button onclick="loadfile()" class="btn">Submit</button>
+                </div>
+
+        </form>
+    </div>
+    <script>
+
+        var fname = localStorage.getItem('fullname')
+        var mail = localStorage.getItem('email')
+
+        document.getElementById('name').innerHTML = fname;
+        document.getElementById('eemail').innerHTML = mail;
+
+        // Function to generate OTP
+        function generateOTP() {
+
+            // Declare a digits variable
+            // which stores all digits
+            var digits = '0123456789';
+            let OTP = '';
+            for (let i = 0; i < 4; i++) {
+                OTP += digits[Math.floor(Math.random() * 10)];
+            }
+            return OTP;
+        }
+
+        function getotp() {
+
+            alert('Your OTP is ' + generateOTP());
+
+        }
+
+
+        // var box = document.getElementById('box').value;
+
+        // function validation() {
+
+        //     if (getotp() === box) {
+
+        //   validation successfull
+        //     }
+        // }
+
+    </script>
+
+</body>
+
+</html>
